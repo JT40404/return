@@ -45,10 +45,7 @@
       font-size: clamp(2.5rem, 6.8vw, 4.2rem);
       line-height: 1.05;
       color: var(--accent);
-      text-shadow:
-        0 0 12px #00ff41,
-        0 0 24px #00ff41,
-        0 0 40px #00ff41;
+      text-shadow: 0 0 12px #00ff41, 0 0 24px #00ff41, 0 0 40px #00ff41;
       margin-bottom: 0.5rem;
       animation: glow 1.8s infinite alternate;
     }
@@ -163,7 +160,7 @@
       margin-top: 1.6rem;
     }
 
-    /* === LIVE TICKER STYLES === */
+    /* LIVE TICKER STYLES */
     .live-ticker {
       background: #111;
       border: 4px solid var(--accent);
@@ -188,24 +185,15 @@
       justify-content: center;
       gap: 2rem;
       align-items: center;
+      min-height: 60px;
     }
 
-    .live-item {
-      margin: 0.4rem 0;
-    }
-
-    .price {
-      color: #00ff41;
-      font-weight: bold;
-    }
-
+    .price { color: #00ff41; font-weight: bold; }
     .change-positive { color: #00ff41; }
     .change-negative { color: #ff0044; }
+    .timestamp { font-size: 0.95rem; opacity: 0.7; margin-top: 0.8rem; }
 
-    section {
-      padding: 70px 20px;
-      text-align: center;
-    }
+    section { padding: 70px 20px; text-align: center; }
   
     h2 {
       font-size: clamp(2rem, 5vw, 3rem);
@@ -247,9 +235,7 @@
       text-align: center;
     }
   
-    .socials {
-      margin: 1.8rem 0;
-    }
+    .socials { margin: 1.8rem 0; }
   
     .socials a {
       color: var(--accent);
@@ -263,10 +249,8 @@
       position: fixed;
       inset: 0;
       background: repeating-linear-gradient(
-        transparent 0px,
-        transparent 3px,
-        rgba(0,255,65,0.05) 3px,
-        rgba(0,255,65,0.05) 6px
+        transparent 0px, transparent 3px,
+        rgba(0,255,65,0.05) 3px, rgba(0,255,65,0.05) 6px
       );
       pointer-events: none;
       z-index: 9999;
@@ -313,9 +297,8 @@
   <!-- LIVE TICKER -->
   <div class="live-ticker">
     <div class="live-ticker-label">LIVE • TRADITION / SOL</div>
-    <div class="live-data" id="liveData">
-      Loading live data...
-    </div>
+    <div class="live-data" id="liveData">Loading live data from DexScreener...</div>
+    <div class="timestamp" id="timestamp"></div>
   </div>
 
   <section>
@@ -369,36 +352,44 @@
     const DEX_URL = `https://api.dexscreener.com/tokens/v1/solana/${CA}`;
 
     async function fetchLiveData() {
+      const liveEl = document.getElementById('liveData');
+      const timeEl = document.getElementById('timestamp');
+
       try {
         const res = await fetch(DEX_URL);
         const data = await res.json();
 
         if (data && data.pairs && data.pairs.length > 0) {
-          const pair = data.pairs[0]; // usually the main pair
-          const price = parseFloat(pair.priceUsd).toFixed(8);
-          const change24h = parseFloat(pair.priceChange.h24 || 0).toFixed(2);
+          const pair = data.pairs[0];
+          const price = parseFloat(pair.priceUsd || 0).toFixed(8);
+          const change24h = parseFloat(pair.priceChange?.h24 || 0).toFixed(2);
           const mcap = pair.fdv ? '$' + Number(pair.fdv).toLocaleString() : '—';
 
           const changeClass = change24h >= 0 ? 'change-positive' : 'change-negative';
           const changeText = change24h >= 0 ? `+${change24h}%` : `${change24h}%`;
 
-          document.getElementById('liveData').innerHTML = `
+          liveEl.innerHTML = `
             <div class="live-item">PRICE: <span class="price">$${price}</span></div>
             <div class="live-item">24H: <span class="${changeClass}">${changeText}</span></div>
             <div class="live-item">MCAP: <span>${mcap}</span></div>
           `;
+
+          const now = new Date();
+          timeEl.textContent = `Last updated: ${now.toLocaleTimeString()}`;
         } else {
-          document.getElementById('liveData').innerHTML = 'No pair data yet • Check DexScreener';
+          liveEl.innerHTML = 'Pair is very new – refreshing soon...';
+          timeEl.textContent = '';
         }
       } catch (err) {
         console.error(err);
-        document.getElementById('liveData').innerHTML = 'Live data unavailable (try again soon)';
+        liveEl.innerHTML = 'Live data temporarily unavailable<br>Check DexScreener';
+        timeEl.textContent = '';
       }
     }
 
-    // Initial fetch + every 15 seconds
+    // Fetch immediately + every 12 seconds (faster for new pairs)
     fetchLiveData();
-    setInterval(fetchLiveData, 15000);
+    setInterval(fetchLiveData, 12000);
 
     function copyCA() {
       navigator.clipboard.writeText(CA).then(() => {
