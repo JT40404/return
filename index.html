@@ -45,7 +45,10 @@
       font-size: clamp(2.5rem, 6.8vw, 4.2rem);
       line-height: 1.05;
       color: var(--accent);
-      text-shadow: 0 0 12px #00ff41, 0 0 24px #00ff41, 0 0 40px #00ff41;
+      text-shadow:
+        0 0 12px #00ff41,
+        0 0 24px #00ff41,
+        0 0 40px #00ff41;
       margin-bottom: 0.5rem;
       animation: glow 1.8s infinite alternate;
     }
@@ -159,41 +162,11 @@
       font-size: 1.05rem;
       margin-top: 1.6rem;
     }
-
-    /* LIVE TICKER STYLES */
-    .live-ticker {
-      background: #111;
-      border: 4px solid var(--accent);
-      padding: 1.2rem 2rem;
-      margin: 2.5rem auto;
-      max-width: 860px;
+  
+    section {
+      padding: 70px 20px;
       text-align: center;
-      box-shadow: 0 0 25px rgba(0, 255, 65, 0.3);
     }
-
-    .live-ticker-label {
-      color: var(--accent);
-      font-size: 1.1rem;
-      margin-bottom: 0.8rem;
-      text-shadow: 0 0 8px #00ff41;
-    }
-
-    .live-data {
-      font-size: clamp(1.15rem, 3vw, 1.45rem);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      align-items: center;
-      min-height: 60px;
-    }
-
-    .price { color: #00ff41; font-weight: bold; }
-    .change-positive { color: #00ff41; }
-    .change-negative { color: #ff0044; }
-    .timestamp { font-size: 0.95rem; opacity: 0.7; margin-top: 0.8rem; }
-
-    section { padding: 70px 20px; text-align: center; }
   
     h2 {
       font-size: clamp(2rem, 5vw, 3rem);
@@ -235,7 +208,9 @@
       text-align: center;
     }
   
-    .socials { margin: 1.8rem 0; }
+    .socials {
+      margin: 1.8rem 0;
+    }
   
     .socials a {
       color: var(--accent);
@@ -249,8 +224,10 @@
       position: fixed;
       inset: 0;
       background: repeating-linear-gradient(
-        transparent 0px, transparent 3px,
-        rgba(0,255,65,0.05) 3px, rgba(0,255,65,0.05) 6px
+        transparent 0px,
+        transparent 3px,
+        rgba(0,255,65,0.05) 3px,
+        rgba(0,255,65,0.05) 6px
       );
       pointer-events: none;
       z-index: 9999;
@@ -293,14 +270,6 @@
       <p class="warning">NO MORE SOY • NO MORE WEAK HANDS • ONLY TRADITION</p>
     </div>
   </header>
-
-  <!-- LIVE TICKER -->
-  <div class="live-ticker">
-    <div class="live-ticker-label">LIVE • TRADITION / SOL</div>
-    <div class="live-data" id="liveData">Loading live data from DexScreener...</div>
-    <div class="timestamp" id="timestamp"></div>
-  </div>
-
   <section>
     <h2>THE RETURN HAS BEGUN</h2>
     <p>
@@ -346,53 +315,10 @@
     </p>
   </footer>
   <div class="scanlines"></div>
-
   <script>
-    const CA = "Au7pA8vYBnQA2VMkHQY7aGVQMnrpH4nukx7k84Umpump";
-    const DEX_URL = `https://api.dexscreener.com/tokens/v1/solana/${CA}`;
-
-    async function fetchLiveData() {
-      const liveEl = document.getElementById('liveData');
-      const timeEl = document.getElementById('timestamp');
-
-      try {
-        const res = await fetch(DEX_URL);
-        const data = await res.json();
-
-        if (data && data.pairs && data.pairs.length > 0) {
-          const pair = data.pairs[0];
-          const price = parseFloat(pair.priceUsd || 0).toFixed(8);
-          const change24h = parseFloat(pair.priceChange?.h24 || 0).toFixed(2);
-          const mcap = pair.fdv ? '$' + Number(pair.fdv).toLocaleString() : '—';
-
-          const changeClass = change24h >= 0 ? 'change-positive' : 'change-negative';
-          const changeText = change24h >= 0 ? `+${change24h}%` : `${change24h}%`;
-
-          liveEl.innerHTML = `
-            <div class="live-item">PRICE: <span class="price">$${price}</span></div>
-            <div class="live-item">24H: <span class="${changeClass}">${changeText}</span></div>
-            <div class="live-item">MCAP: <span>${mcap}</span></div>
-          `;
-
-          const now = new Date();
-          timeEl.textContent = `Last updated: ${now.toLocaleTimeString()}`;
-        } else {
-          liveEl.innerHTML = 'Pair is very new – refreshing soon...';
-          timeEl.textContent = '';
-        }
-      } catch (err) {
-        console.error(err);
-        liveEl.innerHTML = 'Live data temporarily unavailable<br>Check DexScreener';
-        timeEl.textContent = '';
-      }
-    }
-
-    // Fetch immediately + every 12 seconds (faster for new pairs)
-    fetchLiveData();
-    setInterval(fetchLiveData, 12000);
-
     function copyCA() {
-      navigator.clipboard.writeText(CA).then(() => {
+      const ca = "Au7pA8vYBnQA2VMkHQY7aGVQMnrpH4nukx7k84Umpump";
+      navigator.clipboard.writeText(ca).then(() => {
         const el = document.getElementById('caText');
         const original = el.textContent;
         el.textContent = "COPIED!";
