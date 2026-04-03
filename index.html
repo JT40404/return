@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RETURN TO TRADITION</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    
+    :root {
+      --bg: #0a0a0a;
+      --accent: #00ff9d;
+      --text: #ffffff;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Press Start 2P', cursive;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    header {
+      height: 100vh;
+      background: linear-gradient(rgba(10,10,10,0.85), rgba(10,10,10,0.95)), 
+                  url('https://i.imgur.com/c8UV2zw.png') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+    
+    .hero-content {
+      max-width: 900px;
+      padding: 2rem;
+    }
+    
+    h1 {
+      font-size: 4.5rem;
+      color: var(--accent);
+      text-shadow: 0 0 20px #00ff9d, 0 0 40px #00ff9d;
+      margin-bottom: 1rem;
+      animation: glow 2s infinite alternate;
+    }
+    
+    .subtitle {
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 3rem;
+      text-shadow: 0 0 15px #000;
+    }
+    
+    .ca-box {
+      background: rgba(0,0,0,0.8);
+      border: 4px solid var(--accent);
+      padding: 1.5rem 2rem;
+      display: inline-block;
+      margin: 2rem 0;
+      font-size: 1.4rem;
+      word-break: break-all;
+    }
+    
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #000;
+      padding: 1rem 3rem;
+      font-size: 1.5rem;
+      text-decoration: none;
+      border: 4px solid #000;
+      margin: 1rem;
+      transition: all 0.3s;
+      box-shadow: 0 0 20px #00ff9d;
+    }
+    
+    .btn:hover {
+      transform: scale(1.1) rotate(-2deg);
+      box-shadow: 0 0 40px #00ff9d;
+    }
+    
+    section {
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+    
+    .about {
+      background: #111;
+    }
+    
+    h2 {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      text-shadow: 0 0 10px #00ff9d;
+    }
+    
+    p {
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      font-size: 1.3rem;
+    }
+    
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 3rem auto;
+    }
+    
+    .feature-card {
+      background: #1a1a1a;
+      border: 4px solid var(--accent);
+      padding: 2rem;
+      transition: transform 0.3s;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-15px);
+    }
+    
+    footer {
+      background: #000;
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 4px solid var(--accent);
+    }
+    
+    .scanlines {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 2px,
+        rgba(0,255,157,0.03) 2px,
+        rgba(0,255,157,0.03) 4px
+      );
+      pointer-events: none;
+      z-index: 9999;
+    }
+    
+    @keyframes glow {
+      from { text-shadow: 0 0 20px #00ff9d; }
+      to { text-shadow: 0 0 40px #00ff9d, 0 0 60px #00ff9d; }
+    }
+    
+    .ticker {
+      background: #000;
+      padding: 0.8rem;
+      color: var(--accent);
+      font-size: 1.2rem;
+      white-space: nowrap;
+      overflow: hidden;
+      border-top: 3px solid var(--accent);
+      border-bottom: 3px solid var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <!-- Ticker -->
+  <div class="ticker">
+    RETURN TO TRADITION • WHEN BAGGING WAS FUN • NO MORE SOY • BACK TO HARD WORK &amp; GOOD TIMES • $RTT
+  </div>
+
+  <header>
+    <div class="hero-content">
+      <h1>RETURN TO TRADITION</h1>
+      <p class="subtitle">Back when it was fun.<br>When men knew how to bagwork.</p>
+      
+      <div class="ca-box">
+        CA: <strong>COMING SOON</strong>
+      </div>
+      
+      <div>
+        <a href="#" class="btn" onclick="alert('Contract launching soon — stay based!')">BUY $RTT</a>
+        <a href="https://twitter.com" target="_blank" class="btn">X / TWITTER</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="about">
+    <h2>THE MISSION</h2>
+    <p>
+      Enough of this soft, weak, soy-filled internet.<br>
+      We're returning to tradition — the golden era where hard work paid off, 
+      memes were actually funny, and people knew how to put in the bagwork.
+    </p>
+    <p>
+      No more endless scrolling. No more beta behavior.<br>
+      $RTT is the memecoin for those who remember what real fun felt like.
+    </p>
+
+    <div class="features">
+      <div class="feature-card">
+        <h3>TRADITION</h3>
+        <p>Strong hands. Real values. Classic memes.</p>
+      </div>
+      <div class="feature-card">
+        <h3>BAGWORK</h3>
+        <p>Grind. Stack. Build. No excuses.</p>
+      </div>
+      <div class="feature-card">
+        <h3>FUN AGAIN</h3>
+        <p>Memes that actually hit. Community that doesn't suck.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>$RETURN TO TRADITION • $RTT</p>
+    <p style="margin-top: 1rem; font-size: 1rem; opacity: 0.7;">
+      Not financial advice • Just vibes from a better time
+    </p>
+  </footer>
+
+  <div class="scanlines"></div>
+
+  <script>
+    // Simple retro click sound effect (optional fun)
+    document.addEventListener('click', () => {
+      const audio = new Audio('https://freesound.org/data/previews/66/66930_931655-lq.mp3');
+      audio.volume = 0.1;
+      // audio.play(); // uncomment if you want retro click sounds
+    });
+  </script>
+</body>
+</html>
