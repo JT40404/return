@@ -3,25 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RETURN TO TRADITION</title>
+  <title>RETURN TO TRADITION • $RTT</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
     
     :root {
       --bg: #0a0a0a;
-      --accent: #00ff9d;
-      --text: #ffffff;
+      --accent: #00ff41;
+      --warning: #ff0044;
     }
     
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     
     body {
       background: var(--bg);
-      color: var(--text);
+      color: white;
       font-family: 'Press Start 2P', cursive;
       line-height: 1.6;
       overflow-x: hidden;
@@ -29,7 +25,7 @@
     
     header {
       height: 100vh;
-      background: linear-gradient(rgba(10,10,10,0.85), rgba(10,10,10,0.95)), 
+      background: linear-gradient(rgba(10,10,10,0.92), rgba(10,10,10,0.95)), 
                   url('https://i.imgur.com/c8UV2zw.png') center/cover no-repeat;
       display: flex;
       align-items: center;
@@ -38,199 +34,246 @@
       position: relative;
     }
     
-    .hero-content {
-      max-width: 900px;
+    .hero {
+      max-width: 1000px;
       padding: 2rem;
     }
     
     h1 {
-      font-size: 4.5rem;
+      font-size: 5.5rem;
+      line-height: 1.1;
       color: var(--accent);
-      text-shadow: 0 0 20px #00ff9d, 0 0 40px #00ff9d;
+      text-shadow: 
+        0 0 20px #00ff41,
+        0 0 40px #00ff41,
+        0 0 60px #00ff41;
       margin-bottom: 1rem;
-      animation: glow 2s infinite alternate;
+      animation: glow 1.8s infinite alternate;
     }
     
-    .subtitle {
-      font-size: 1.8rem;
-      color: #fff;
-      margin-bottom: 3rem;
-      text-shadow: 0 0 15px #000;
+    .tagline {
+      font-size: 2.2rem;
+      color: white;
+      margin-bottom: 2.5rem;
+      text-shadow: 0 0 20px black;
     }
     
-    .ca-box {
-      background: rgba(0,0,0,0.8);
-      border: 4px solid var(--accent);
-      padding: 1.5rem 2rem;
-      display: inline-block;
-      margin: 2rem 0;
-      font-size: 1.4rem;
+    .ca-container {
+      background: #000;
+      border: 6px solid var(--accent);
+      padding: 1.8rem 2rem;
+      margin: 2rem auto;
+      max-width: 820px;
+      box-shadow: 0 0 40px rgba(0, 255, 65, 0.6);
+    }
+    
+    .ca-label {
+      color: var(--accent);
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+    }
+    
+    .ca {
+      font-size: 1.35rem;
       word-break: break-all;
+      background: #111;
+      padding: 1rem;
+      border: 3px solid var(--accent);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .ca:hover {
+      background: #1a1a1a;
+      transform: scale(1.02);
     }
     
     .btn {
       display: inline-block;
       background: var(--accent);
       color: #000;
-      padding: 1rem 3rem;
-      font-size: 1.5rem;
+      font-size: 1.7rem;
+      padding: 1.2rem 3rem;
+      margin: 0.8rem;
       text-decoration: none;
-      border: 4px solid #000;
-      margin: 1rem;
+      border: 5px solid #000;
+      box-shadow: 0 0 30px #00ff41;
       transition: all 0.3s;
-      box-shadow: 0 0 20px #00ff9d;
+      min-width: 260px;
     }
     
     .btn:hover {
-      transform: scale(1.1) rotate(-2deg);
-      box-shadow: 0 0 40px #00ff9d;
+      transform: scale(1.15) rotate(2deg);
+      box-shadow: 0 0 50px #00ff41;
+      background: white;
+    }
+    
+    .warning {
+      color: var(--warning);
+      font-size: 1.1rem;
+      margin-top: 1.5rem;
     }
     
     section {
-      padding: 6rem 2rem;
+      padding: 80px 20px;
       text-align: center;
     }
     
-    .about {
-      background: #111;
-    }
-    
     h2 {
-      font-size: 3rem;
+      font-size: 3.5rem;
       color: var(--accent);
       margin-bottom: 2rem;
-      text-shadow: 0 0 10px #00ff9d;
+      text-shadow: 0 0 15px #00ff41;
     }
     
     p {
-      max-width: 800px;
-      margin: 0 auto 2rem;
-      font-size: 1.3rem;
+      max-width: 850px;
+      margin: 0 auto 2.5rem;
+      font-size: 1.45rem;
     }
     
     .features {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem;
       max-width: 1200px;
-      margin: 3rem auto;
+      margin: 4rem auto;
     }
     
-    .feature-card {
-      background: #1a1a1a;
-      border: 4px solid var(--accent);
-      padding: 2rem;
-      transition: transform 0.3s;
+    .card {
+      background: #111;
+      border: 5px solid var(--accent);
+      padding: 2.5rem 1.5rem;
+      transition: all 0.4s;
     }
     
-    .feature-card:hover {
-      transform: translateY(-15px);
+    .card:hover {
+      transform: translateY(-20px) scale(1.03);
+      border-color: white;
     }
     
     footer {
       background: #000;
-      padding: 3rem 2rem;
+      padding: 4rem 2rem;
+      border-top: 6px solid var(--accent);
       text-align: center;
-      border-top: 4px solid var(--accent);
+    }
+    
+    .socials {
+      margin: 2rem 0;
+    }
+    
+    .socials a {
+      color: var(--accent);
+      margin: 0 1rem;
+      font-size: 1.4rem;
+      text-decoration: none;
+      text-shadow: 0 0 10px #00ff41;
     }
     
     .scanlines {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
+      inset: 0;
       background: repeating-linear-gradient(
-        to bottom,
         transparent 0px,
-        transparent 2px,
-        rgba(0,255,157,0.03) 2px,
-        rgba(0,255,157,0.03) 4px
+        transparent 3px,
+        rgba(0,255,65,0.07) 3px,
+        rgba(0,255,65,0.07) 6px
       );
       pointer-events: none;
       z-index: 9999;
     }
     
     @keyframes glow {
-      from { text-shadow: 0 0 20px #00ff9d; }
-      to { text-shadow: 0 0 40px #00ff9d, 0 0 60px #00ff9d; }
-    }
-    
-    .ticker {
-      background: #000;
-      padding: 0.8rem;
-      color: var(--accent);
-      font-size: 1.2rem;
-      white-space: nowrap;
-      overflow: hidden;
-      border-top: 3px solid var(--accent);
-      border-bottom: 3px solid var(--accent);
+      from { text-shadow: 0 0 20px #00ff41, 0 0 40px #00ff41; }
+      to { text-shadow: 0 0 30px #00ff41, 0 0 60px #00ff41, 0 0 80px #00ff41; }
     }
   </style>
 </head>
 <body>
-  <!-- Ticker -->
-  <div class="ticker">
-    RETURN TO TRADITION • WHEN BAGGING WAS FUN • NO MORE SOY • BACK TO HARD WORK &amp; GOOD TIMES • $RTT
-  </div>
 
   <header>
-    <div class="hero-content">
+    <div class="hero">
       <h1>RETURN TO TRADITION</h1>
-      <p class="subtitle">Back when it was fun.<br>When men knew how to bagwork.</p>
+      <p class="tagline">BACK WHEN IT WAS FUN.<br>BACK WHEN MEN KNEW HOW TO BAGWORK.</p>
       
-      <div class="ca-box">
-        CA: <strong>COMING SOON</strong>
+      <div class="ca-container">
+        <div class="ca-label">CONTRACT ADDRESS (SOL)</div>
+        <div class="ca" onclick="copyCA()" id="caText">
+          Au7pA8vYBnQA2VMkHQY7aGVQMnrpH4nukx7k84Umpump
+        </div>
+        <small style="color:#00ff41;">Click CA to copy</small>
       </div>
       
       <div>
-        <a href="#" class="btn" onclick="alert('Contract launching soon — stay based!')">BUY $RTT</a>
-        <a href="https://twitter.com" target="_blank" class="btn">X / TWITTER</a>
+        <a href="https://pump.fun/Au7pA8vYBnQA2VMkHQY7aGVQMnrpH4nukx7k84Umpump" target="_blank" class="btn">BUY $RTT NOW</a>
+        <a href="https://t.me/ReturnToTraditions" target="_blank" class="btn">TELEGRAM</a>
+        <a href="https://x.com/CyborgDeployed/status/2039857603128508893" target="_blank" class="btn">DEV'S X</a>
       </div>
+      
+      <p class="warning">NO MORE SOY • NO MORE WEAK HANDS • ONLY TRADITION</p>
     </div>
   </header>
 
-  <section class="about">
-    <h2>THE MISSION</h2>
+  <section>
+    <h2>THE RETURN HAS BEGUN</h2>
     <p>
-      Enough of this soft, weak, soy-filled internet.<br>
-      We're returning to tradition — the golden era where hard work paid off, 
-      memes were actually funny, and people knew how to put in the bagwork.
+      We are done with the beta meta.<br>
+      Done with weak culture. Done with endless cope.<br><br>
+      $RTT is the memecoin for those who remember when life was raw, 
+      work was respected, and memes actually slapped.
     </p>
     <p>
-      No more endless scrolling. No more beta behavior.<br>
-      $RTT is the memecoin for those who remember what real fun felt like.
+      Return to hard work.<br>
+      Return to strong hands.<br>
+      Return to when it was actually fun.
     </p>
+  </section>
 
+  <section style="background:#111;">
+    <h2>WHY $RTT?</h2>
     <div class="features">
-      <div class="feature-card">
+      <div class="card">
         <h3>TRADITION</h3>
-        <p>Strong hands. Real values. Classic memes.</p>
+        <p>Real values. Real strength. No dilution. No excuses.</p>
       </div>
-      <div class="feature-card">
+      <div class="card">
         <h3>BAGWORK</h3>
-        <p>Grind. Stack. Build. No excuses.</p>
+        <p>Grind. Stack. Hold. This is the way it used to be.</p>
       </div>
-      <div class="feature-card">
+      <div class="card">
         <h3>FUN AGAIN</h3>
-        <p>Memes that actually hit. Community that doesn't suck.</p>
+        <p>Memes that hit different. Community that actually builds.</p>
       </div>
     </div>
   </section>
 
   <footer>
-    <p>$RETURN TO TRADITION • $RTT</p>
-    <p style="margin-top: 1rem; font-size: 1rem; opacity: 0.7;">
-      Not financial advice • Just vibes from a better time
+    <p style="font-size: 2.2rem; margin-bottom: 1rem;">$RETURN TO TRADITION • $RTT</p>
+    <p>CA: Au7pA8vYBnQA2VMkHQY7aGVQMnrpH4nukx7k84Umpump</p>
+    
+    <div class="socials">
+      <a href="https://t.me/ReturnToTraditions" target="_blank">TELEGRAM</a>
+      <a href="https://x.com/CyborgDeployed/status/2039857603128508893" target="_blank">DEV'S X</a>
+    </div>
+    
+    <p style="margin-top: 2rem; opacity: 0.7; font-size: 1.1rem;">
+      Not financial advice • Pure vibes from a better era
     </p>
   </footer>
 
   <div class="scanlines"></div>
 
   <script>
-    // Simple retro click sound effect (optional fun)
-    document.addEventListener('click', () => {
-      const audio = new Audio('https://freesound.org/data/previews/66/66930_931655-lq.mp3');
-      audio.volume = 0.1;
-      // audio.play(); // uncomment if you want retro click sounds
-    });
+    function copyCA() {
+      const ca = "Au7pA8vYBnQA2VMkHQY7aGVQMnrpH4nukx7k84Umpump";
+      navigator.clipboard.writeText(ca).then(() => {
+        const el = document.getElementById('caText');
+        const originalText = el.textContent;
+        el.textContent = "COPIED!";
+        setTimeout(() => el.textContent = originalText, 1500);
+      });
+    }
   </script>
 </body>
 </html>
